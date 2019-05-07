@@ -32,7 +32,16 @@ public class HibernateCustomerDAO implements CustomerDAO {
 	public void saveCustomer(Customer newCustomer) {
 		Session session = sessionFactory.getCurrentSession();
 		
-		session.save(newCustomer);
+		session.saveOrUpdate(newCustomer);
+	}
+
+	@Override
+	public Customer getCustomer(int id) {
+		Session session = sessionFactory.getCurrentSession();
+		
+		Customer customer = session.get(Customer.class, id);
+		
+		return customer;
 	}
 
 }
