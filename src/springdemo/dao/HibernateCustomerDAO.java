@@ -21,7 +21,7 @@ public class HibernateCustomerDAO implements CustomerDAO {
 	public List<Customer> getCustomers() {
 		Session session = sessionFactory.getCurrentSession();
 		
-		Query<Customer> customersQuesry = session.createQuery("from Customer", Customer.class);
+		Query<Customer> customersQuesry = session.createQuery("from Customer order by lastName", Customer.class);
 		
 		List<Customer> customers = customersQuesry.getResultList();
 		
