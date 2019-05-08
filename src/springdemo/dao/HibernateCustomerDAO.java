@@ -44,4 +44,14 @@ public class HibernateCustomerDAO implements CustomerDAO {
 		return customer;
 	}
 
+	@Override
+	public void deleteCustomer(int id) {
+		Session session = sessionFactory.getCurrentSession();
+		
+		Query deleteQuery = session.createQuery("delete from Customer where id=:customerId");
+		deleteQuery.setParameter("customerId", id);
+		
+		deleteQuery.executeUpdate();
+	}
+
 }
